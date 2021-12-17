@@ -3,10 +3,7 @@ import { UserContext } from './contexts/UserContext';
 import AppRouter from './routers/AppRouter';
 
 const AppContext = () => {
-  const [user, setUser] = useState({
-    name: '',
-    age: null,
-  });
+  const [user, setUser] = useState({});
   return (
     <div>
       <UserContext.Provider value={{ user, setUser }}>
