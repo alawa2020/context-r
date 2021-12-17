@@ -1,4 +1,8 @@
 body {
-  background-color: #21232A;
+  background-color: #21232a;
+  color: antiquewhite;
+}
+
+pre {
   color: antiquewhite;
 }
