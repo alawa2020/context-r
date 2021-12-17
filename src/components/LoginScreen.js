@@ -1,16 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { UserContext } from '../contexts/UserContext';
 import { useForm } from '../hooks/useForm';
 
 const LoginScreen = () => {
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
-  const [formValues, formValuesChange, resetForm] = useForm({
+  const [formValues, formValuesChange, resetForm, setFormValues] = useForm({
     name: '',
     age: '',
   });
 
   const { name, age } = formValues;
+
+  useEffect(() => {
+    setValuesFormContext();
+  }, []);
+
+  const setValuesFormContext = () => {
+    if (!!Object.keys(user).length) {
+      setFormValues({
+        name: user.name,
+        age: user.age,
+      });
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +65,7 @@ const LoginScreen = () => {
 
         <input className="btn btn-success mr-3" type="submit" value="Login" />
 
-        <button className="btn btn-primary" onClick={clearForm}>
+        <button type="button" className="btn btn-primary" onClick={clearForm}>
           Limpiar
         </button>
       </form>
