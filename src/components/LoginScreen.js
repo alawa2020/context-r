@@ -14,12 +14,21 @@ const LoginScreen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setUser({
-      name,
-      age,
-    });
+    if (name.trim().length > 2) {
+      setUser({
+        name,
+        age,
+      });
+      alert('user establecido!');
+      return;
+    }
+    alert('complete los cmapos!');
+  };
+
+  const clearForm = () => {
     resetForm();
   };
+
   return (
     <div>
       <h1>Login Screen</h1>
@@ -41,7 +50,11 @@ const LoginScreen = () => {
           onChange={formValuesChange}
         />
 
-        <input className="btn btn-primary" type="submit" value="Login" />
+        <input className="btn btn-success mr-3" type="submit" value="Login" />
+
+        <button className="btn btn-primary" onClick={clearForm}>
+          Limpiar
+        </button>
       </form>
     </div>
   );
